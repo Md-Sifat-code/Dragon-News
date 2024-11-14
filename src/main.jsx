@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
@@ -8,6 +7,7 @@ import Error from "./Componenets/Fixed_componenet/Error";
 import Home from "./Componenets/Home_components/Home";
 import About from "./Componenets/Extra_components/About";
 import Career from "./Componenets/Extra_components/Career";
+import { CategoryProvider } from "./Context_APIs/Category";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   },
 ]);
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <CategoryProvider>
     <RouterProvider router={router} />
-  </StrictMode>
+  </CategoryProvider>
 );

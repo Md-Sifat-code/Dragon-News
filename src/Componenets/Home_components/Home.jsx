@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Marquee from "react-fast-marquee";
 import Navigation from "../Fixed_componenet/Navigation";
+import { categoryContext } from "../../Context_APIs/Category";
 
 function Home() {
+  const { categoris } = useContext(categoryContext);
+  console.log(categoris);
   return (
     <section className="pop">
       <div className="container mx-auto">
@@ -31,8 +34,16 @@ function Home() {
           <Navigation></Navigation>
         </div>
         {/* this will be te main section */}
-        <div className="grid grid-cols-12 mt-6">
-          <aside className="col-span-3">this is left</aside>
+        <div className="grid grid-cols-12 mt-6 gap-4">
+          <aside className="col-span-3">
+            <div className="flex  flex-col gap-2">
+              {categoris.map((categgory) => (
+                <p className="btn btn-outline" key={categgory.category_id}>
+                  {categgory.category_name}
+                </p>
+              ))}
+            </div>
+          </aside>
           <div className="col-span-6">This will be the middle</div>
           <aside className="col-span-3">this is right</aside>
         </div>
