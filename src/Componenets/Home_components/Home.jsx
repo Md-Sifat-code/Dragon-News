@@ -1,11 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import Navigation from "../Fixed_componenet/Navigation";
 import { categoryContext } from "../../Context_APIs/Category";
+import Category_new from "../../Pages/Category_new";
 
 function Home() {
   const { categoris } = useContext(categoryContext);
-  console.log(categoris);
+  const [selectedCategoryData, setSelectedCategoryData] = useState([]);
+  const [activeCategoryId, setActiveCategoryId] = useState(null);
+
+  // Fetch category data based on category ID
+  const fetchCategoryData = async (categoryId) => {
+    try {
+      const response = await fetch(
+        `https://openapi.programming-hero.com/api/news/category/${categoryId}`
+      );
+      const data = await response.json();
+      setSelectedCategoryData(data.data); // Assuming `data.data` contains the articles for the category
+      setActiveCategoryId(categoryId); // Set the active category ID
+    } catch (error) {
+      console.error("Error fetching category data:", error);
+    }
+  };
+
+  // Fetch initial data for the first category
+  useEffect(() => {
+    if (categoris.length > 0) {
+      const firstCategoryId = categoris[0].category_id;
+      fetchCategoryData(firstCategoryId);
+    }
+  }, [categoris]);
+
   return (
     <section className="pop">
       <div className="container mx-auto">
@@ -16,16 +41,16 @@ function Home() {
           <Marquee pauseOnHover>
             <p className="mr-3">
               <span className="font-bold">Match Highlights:</span> Germany vs
-              Spain — as it happened ! Match Highlights: Germany vs Spain as...
+              Spain — as it happened! Match Highlights: Germany vs Spain as...
             </p>
             <p className="mr-3">
               <span className="font-bold">Match Highlights:</span> Brazil vs
-              Bangladesh — as it happened ! Match Highlights: Brazil vs
+              Bangladesh — as it happened! Match Highlights: Brazil vs
               Bangladesh as...
             </p>
             <p className="mr-3">
               <span className="font-bold">Match Highlights:</span> England vs
-              Japan — as it happened ! Match Highlights: England vs Japan as...
+              Japan — as it happened! Match Highlights: England vs Japan as...
             </p>
           </Marquee>
         </div>
@@ -33,19 +58,37 @@ function Home() {
         <div>
           <Navigation></Navigation>
         </div>
-        {/* this will be te main section */}
+        {/* Main section */}
         <div className="grid grid-cols-12 mt-6 gap-4">
           <aside className="col-span-3">
-            <div className="flex  flex-col gap-2">
-              {categoris.map((categgory) => (
-                <p className="btn btn-outline" key={categgory.category_id}>
-                  {categgory.category_name}
-                </p>
+            <div className="flex flex-col gap-2">
+              <h1 className="font-bold text-start mb-3">All Category</h1>
+              {categoris.map((category) => (
+                <button
+                  onClick={() => fetchCategoryData(category.category_id)}
+                  className={`btn ${
+                    activeCategoryId === category.category_id
+                      ? "btn-active"
+                      : "btn-outline"
+                  }`}
+                  key={category.category_id}
+                >
+                  {category.category_name}
+                </button>
               ))}
             </div>
           </aside>
-          <div className="col-span-6">This will be the middle</div>
-          <aside className="col-span-3">this is right</aside>
+          <div className="col-span-6">
+            <h1 className="text-start font-bold mb-3">Dragon News Home</h1>
+            {selectedCategoryData.length > 0 ? (
+              selectedCategoryData.map((item) => (
+                <Category_new key={item.id} item={item} />
+              ))
+            ) : (
+              <p>Please select a category to view details.</p>
+            )}
+          </div>
+          <aside className="col-span-3">This is right</aside>
         </div>
       </div>
     </section>
