@@ -4,7 +4,7 @@ import moment from "moment";
 export default function Navbar() {
   return (
     <section>
-      <div className="container mx-auto flex flex-col gap-3 justify-center items-center py-6">
+      <div className="container mx-auto flex flex-col gap-3 justify-center items-center py-6 pop">
         <img
           className="md:w-96"
           src={logo}

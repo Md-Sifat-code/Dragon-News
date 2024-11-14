@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 function Home() {
   return (
-    <section>
+    <section className="pop">
       <div className="container mx-auto">
         <div className="flex flex-row gap-3 items-center p-4 bg-gray-100">
           <p className="btn btn-sm px-4 bg-[#D72050] font-bold text-white border-none">
