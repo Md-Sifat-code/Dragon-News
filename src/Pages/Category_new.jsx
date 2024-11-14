@@ -56,7 +56,7 @@ export default function Category_new({ item }) {
 
       {/* Text truncation */}
       <p
-        className={`px-3 font-normal text-gray-400 ${
+        className={`px-3 font-normal mt-8 text-gray-400 ${
           isExpanded ? "" : "line-clamp-3"
         }`}
       >
@@ -66,10 +66,11 @@ export default function Category_new({ item }) {
       {/* Read more button */}
       <button
         onClick={handleReadMore}
-        className="text-blue-500 hover:underline mt-2 px-3"
+        className="text-[#FF8C47] text-start hover:underline mt-2 px-3"
       >
         {isExpanded ? "Read less" : "Read more"}
       </button>
+      <hr className="w-full px-3 text-black font-bold mt-4" />
     </div>
   );
 }
