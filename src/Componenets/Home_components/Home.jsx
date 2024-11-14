@@ -30,6 +30,12 @@ function Home() {
         <div>
           <Navigation></Navigation>
         </div>
+        {/* this will be te main section */}
+        <div className="grid grid-cols-12 mt-6">
+          <aside className="col-span-3">this is left</aside>
+          <div className="col-span-6">This will be the middle</div>
+          <aside className="col-span-3">this is right</aside>
+        </div>
       </div>
     </section>
   );
