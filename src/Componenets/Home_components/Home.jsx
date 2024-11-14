@@ -1,5 +1,6 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
+import Navigation from "../Fixed_componenet/Navigation";
 
 function Home() {
   return (
@@ -24,6 +25,10 @@ function Home() {
               Japan — as it happened ! Match Highlights: England vs Japan as...
             </p>
           </Marquee>
+        </div>
+
+        <div>
+          <Navigation></Navigation>
         </div>
       </div>
     </section>
