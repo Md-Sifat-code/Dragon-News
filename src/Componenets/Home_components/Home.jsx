@@ -4,6 +4,7 @@ import Navigation from "../Fixed_componenet/Navigation";
 import { categoryContext } from "../../Context_APIs/Category";
 import Category_new from "../../Pages/Category_new";
 import Login_Buttons from "../Extra_components/Login_Buttons";
+import Find_buttons from "../Extra_components/Find_buttons";
 
 function Home() {
   const { categoris } = useContext(categoryContext);
@@ -93,6 +94,10 @@ function Home() {
             <h1 className="text-start font-bold mb-3">Login With </h1>
             <div>
               <Login_Buttons></Login_Buttons>
+              <h1 className="font-bold text-black text-start mt-4">
+                Find Us On
+              </h1>
+              <Find_buttons></Find_buttons>
             </div>
           </aside>
         </div>
