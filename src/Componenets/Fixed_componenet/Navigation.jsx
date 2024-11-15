@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import user from "/assets/user.png";
 
 export default function Navigation() {
@@ -14,9 +14,12 @@ export default function Navigation() {
         </div>
         <div className="flex flex-row gap-3  justify-end items-center ">
           <img className="w-[50px] h-[50px]" src={user} alt="" />
-          <p className="btn btn-small bg-gray-700 hover:bg-black px-8  text-white font-bold">
+          <Link
+            to={"/auth/login"}
+            className="btn btn-small bg-gray-700 hover:bg-black px-8  text-white font-bold"
+          >
             Login
-          </p>
+          </Link>
         </div>
       </div>
     </section>

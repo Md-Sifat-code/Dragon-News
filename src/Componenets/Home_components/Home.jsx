@@ -3,6 +3,7 @@ import Marquee from "react-fast-marquee";
 import Navigation from "../Fixed_componenet/Navigation";
 import { categoryContext } from "../../Context_APIs/Category";
 import Category_new from "../../Pages/Category_new";
+import Login_Buttons from "../Extra_components/Login_Buttons";
 
 function Home() {
   const { categoris } = useContext(categoryContext);
@@ -88,7 +89,12 @@ function Home() {
               <p>Please select a category to view details.</p>
             )}
           </div>
-          <aside className="col-span-3">This is right</aside>
+          <aside className="col-span-3">
+            <h1 className="text-start font-bold mb-3">Login With </h1>
+            <div>
+              <Login_Buttons></Login_Buttons>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
